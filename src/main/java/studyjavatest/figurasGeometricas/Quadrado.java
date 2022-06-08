@@ -1,4 +1,4 @@
-package studyjavatest.figurasGeometricas;
+package studyjavatest.figurasgeometricas;
 
 public class Quadrado {
 
@@ -9,7 +9,7 @@ public class Quadrado {
         setLado(lado);
     }
 
-    public double getLado() {
+    public double getLado() { 
         return this.lado;
     }
 

@@ -1,4 +1,4 @@
-package studyjavatest.figurasGeometricas;
+package studyjavatest.figurasgeometricas;
 
 public class Retangulo {
 
