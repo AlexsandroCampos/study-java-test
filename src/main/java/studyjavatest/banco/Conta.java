@@ -12,10 +12,22 @@ public class Conta {
         setLimite(limite);        
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
     private void setCodigo(int codigo) {
         if(codigo < 0)
             throw new IllegalArgumentException("O código não pode ser negativo");
         this.codigo = codigo;
+    }
+
+    public double getLimite() {
+        return limite;
+    }
+
+    public double getSaldo() {
+        return saldo;
     }
 
     private void setLimite(double limite) {
