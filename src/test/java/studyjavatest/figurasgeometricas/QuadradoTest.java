@@ -16,7 +16,7 @@ public class QuadradoTest {
     }
 
     @Test
-    @DisplayName("Should initiate attributes when parameterized constructor is called")
+    @DisplayName("Should initiate attribute when parameterized constructor is called")
     public void shouldInitiateAttributeWhenParameterizedConstructorIsCalled() {
         double lado = 2.0;
         Quadrado quadrado = new Quadrado(lado);
@@ -26,9 +26,22 @@ public class QuadradoTest {
     }
 
     @Test
-    @DisplayName("Should throw IllegalArgumentException when parameterized constructor receives non-positive parameter")
-    public void shouldThrowIllegalArgumentExceptionWhenParameterizedConstructorReceivesNonPositiveParameter() {
+    @DisplayName("Should throw IllegalArgumentException when parameterized constructor receive negative parameter")
+    public void shouldThrowIllegalArgumentExceptionWhenParameterizedConstructorReceiveNegativeParameter() {
         double lado = -2.0;
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Quadrado(lado)
+        );
+        assertEquals("O lado precisa ser maior do que 0.", exception.getMessage());
+
+    }
+
+    @Test
+    @DisplayName("Should throw IllegalArgumentException when parameterized constructor receive parameter equals zero")
+    public void shouldThrowIllegalArgumentExceptionWhenParameterizedConstructorReceiveParameterEqualsZero() {
+        double lado = 0;
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
@@ -46,18 +59,33 @@ public class QuadradoTest {
         quadrado.setLado(lado2);
 
         assertEquals(quadrado.getLado(), lado2, 0);
-        assertFalse(quadrado.getLado() == lado);
     }
 
     @Test
-    @DisplayName("Set Lado should throw IllegalArgumentException when receive non-positive parameter")
-    public void setLado_ShouldThrowIllegalArgumentExceptionWhenParameterizedConstructorReceiveNonPositiveParameter() {
+    @DisplayName("Set Lado should throw IllegalArgumentException when receive negative parameter")
+    public void setLado_ShouldThrowIllegalArgumentExceptionWhenReceiveNegativeParameter() {
         double lado = 2.0;
+        double novoLado = -2.0;
         Quadrado quadrado = new Quadrado(lado);
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> quadrado.setLado(-2.0)
+                () -> quadrado.setLado(novoLado)
+        );
+        assertEquals("O lado precisa ser maior do que 0.", exception.getMessage());
+
+    }
+
+    @Test
+    @DisplayName("Set Lado should throw IllegalArgumentException when receive parameter equals zero")
+    public void setLado_ShouldThrowIllegalArgumentExceptionWhenReceiveParameterEqualsZero() {
+        double lado = 2.0;
+        double novoLado = 0;
+        Quadrado quadrado = new Quadrado(lado);
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> quadrado.setLado(novoLado)
         );
         assertEquals("O lado precisa ser maior do que 0.", exception.getMessage());
     }
