@@ -127,7 +127,7 @@ public class RetanguloTest {
     }
 
     @Test
-    @DisplayName("Get Base should get base attribute")
+    @DisplayName("Get Base should get Base attribute")
     public void getBase_ShouldGetBaseAttribute() {
         double base = 2.0;
         double altura = 3.0;

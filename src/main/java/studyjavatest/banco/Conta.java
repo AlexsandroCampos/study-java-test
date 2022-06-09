@@ -9,7 +9,8 @@ public class Conta {
     public Conta() { }
     public Conta(int codigo, double limite) {
         setCodigo(codigo);
-        setLimite(limite);        
+        setLimite(limite);
+        this.saldo = 0.0;
     }
 
     public int getCodigo() {
@@ -26,18 +27,19 @@ public class Conta {
         return limite;
     }
 
-    public double getSaldo() {
-        return saldo;
-    }
-
     private void setLimite(double limite) {
         if(limite < 0)
             throw new IllegalArgumentException("O limite não pode ser negativo");
         this.limite = limite;
     }
 
+    public double getSaldo() {
+        return saldo;
+    }
+
+
     public boolean depositar(double valor) {
-        if(valor > 0){
+        if(valor > 0.0){
             saldo = saldo + valor;
             return true;
         }
@@ -45,6 +47,10 @@ public class Conta {
     }
 
     public boolean sacar(double valor) {
+        if(valor <= 0.0) {
+            return false;
+        }
+
         if(saldo + limite >= valor) {
             saldo = saldo - valor;
             return true;
@@ -53,6 +59,9 @@ public class Conta {
     }
 
     public boolean transferir(Conta conta, double valor) {
+        if(valor <= 0.0) {
+            return false;
+        }
         if(saldo + limite >= valor) {
             saldo = saldo - valor;
             conta.saldo = conta.saldo + valor;
@@ -60,4 +69,5 @@ public class Conta {
         }
         return false;
     }
+
 }
